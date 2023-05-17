@@ -6,7 +6,7 @@ const Contact = () => {
     text-align: center;
 
     .container {
-      margin-top: 6rem;
+      margin: 5rem auto;
 
       .contact-form {
         max-width: 50rem;
@@ -33,7 +33,33 @@ const Contact = () => {
     }
   `;
 
-  return <Wrapper></Wrapper>;
+  return (
+    <Wrapper>
+      <h2 className="common-heading">
+        Contact Page
+      </h2 >
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3442.4539532122785!2d78.0677319106549!3d30.36646497465779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3908d7cbdc6e9d1b%3A0x7082f9fac370bdb7!2sPacific%20Mall%20Dehradun!5e0!3m2!1sen!2sin!4v1683355227877!5m2!1sen!2sin"
+        width="100%"
+        height="450"
+        style={{ border: 0 }}
+        allowFullScreen=""
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        title="Unique Title"
+      >
+      </iframe>
+      <div className="container">
+        <div className="contact-form">
+          <form action="" className="contact-inputs">
+            <input type="text" placeholder="username" name="username" required autoComplete="off" />
+            <input type="email" placeholder="Email" required autoComplete="off" name="Email" />
+            <textarea name="Message" placeholder="Enter You Message" cols="30" rows="10" required autoComplete="off"></textarea>
+            <input type="Submit" value="Send" />
+          </form>
+        </div>
+      </div>
+    </Wrapper>
+  );
 };
 
 export default Contact;

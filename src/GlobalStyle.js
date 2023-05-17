@@ -126,14 +126,15 @@ ${"" /* resuable code section  */}
 
    .caption {
       position: absolute;
-      top: 15%;
-      right: 10%;
+      top: 12%;
+      right: 8%;
       text-transform: uppercase;
       background-color: ${({ theme }) => theme.colors.bg};
       color: ${({ theme }) => theme.colors.helper};
       padding: 0.8rem 2rem;
       font-size: 1.2rem;
       border-radius: 2rem;
+      z-index: 2;
     }
 
 input, textarea{
@@ -156,25 +157,29 @@ input, textarea{
     font-size: 1.8rem;
     cursor: pointer;
     }
-
 @media (max-width: ${({ theme }) => theme.media.tab}) {
     .container {
     max-width: 130rem;
-    padding: 0 3.2rem;
+    padding: 0 3.2rem; 
   }
+  html {
+    font-size: 56.25%;
+  }
+
   }
 
    @media (max-width: ${({ theme }) => theme.media.mobile}) {
-       html {
+    html {
       font-size: 50%;
     }
 
-.grid{
-  gap: 3.2rem;
-}
-      .grid-two-column , .grid-three-column, .grid-four-column{
-          grid-template-columns: 1fr;
-        }
+    .grid{
+      gap: 3.2rem;
     }
+
+    .grid-two-column , .grid-three-column, .grid-four-column{
+          grid-template-columns: 1fr;
+    }
+  }
 
 `;
