@@ -2,27 +2,27 @@ import React, { useState } from 'react'
 import styled from 'styled-components';
 
 const MyImage = (props) => {
-    const [imgNumber, setimageNumber] = useState(0);
-    console.log(props.imgs);
+    const { imgs } = props;
+    const [imgNumber, setimageNumber] = useState(imgs?.[0]);
     return (
         <Wrapper>
 
             <div className='grid '>
-                {props?.imgs?.map((curElm, index) => {
+                {imgs?.map((curElm, index) => {
                     return (
                         <img
                             src={curElm.url}
                             alt={curElm.filename}
-                            key={curElm.id}
+                            key={index}
                             className='box-image--style'
                             onClick={() => {
-                                setimageNumber(index)
+                                setimageNumber(curElm)
                             }} />
                     )
                 })}
             </div>
             <div className="main-screen">
-                <img src={props?.imgs[`${imgNumber}`]?.url} alt={props?.imgs[`${imgNumber}`]?.filename} style={{ width: "100%" }} />
+                <img src={imgNumber?.url} alt={imgNumber?.filename} style={{ width: "100%" }} />
             </div>
 
 

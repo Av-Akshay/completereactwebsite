@@ -1,29 +1,24 @@
-import styled from "styled-components";
-import { UseProductContext } from "../context/productcontex";
-import Product from "./Product";
+import React from 'react';
+import styled from 'styled-components';
+import { useFilterContex } from '../context/Filtercontex';
+import Gridview from './Gridview';
+import Listview from './Listview';
 
-const FeatureProducts = () => {
-    const { isLoading, featureProducts } = UseProductContext();
 
-    if (isLoading) {
-        return <div>....Loading</div>
+const ProductList = () => {
+    const { All_products, filter_products, grid_view } = useFilterContex();
+    if (grid_view === true) {
+        return (
+            <Gridview products={filter_products} />
+        )
     }
-    return (
-        <Wrapper className="section">
-            <div className="container">
-                <div className="intro-data"> Check Now</div>
-                <div className="common-heading">
-                    Our Feature Services
-                </div>
-                <div className="grid grid-three-column">
-                    {featureProducts.map((curElem) => {
-                        return <Product key={curElem.id} {...curElem} />
-                    })}
-                </div>
-            </div>
-        </Wrapper>
-    )
-}
+    if (grid_view === false) {
+        return (
+            <Listview products={filter_products} />
+        )
+    }
+};
+
 const Wrapper = styled.section`
     background-color: ${({ theme }) => theme.colors.bg};
     margin: 0 0 2rem 0;
@@ -73,4 +68,4 @@ figure:hover::after{
 
 `
 
-export default FeatureProducts
+export default ProductList

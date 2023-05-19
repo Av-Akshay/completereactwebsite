@@ -69,7 +69,7 @@ const Wrapper = styled.section`
 background-color:${({ theme }) => theme.colors.footer_bg};
 position: relative;
 padding-top: 2rem;
-margin-top: 5rem;
+margin-top: 10rem;
 height: auto;
 .contact-short{
     width: 80%;

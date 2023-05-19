@@ -4,7 +4,7 @@ import FormatePrice from '../helpers/FormatePrice';
 
 const Product = (curElem) => {
     const { id, name, image, price, category } = curElem;
-    // console.log(curElem);
+
     return (
         <NavLink to={`/Singleproduct/${id}`}>
             <div className="card">
@@ -21,6 +21,6 @@ const Product = (curElem) => {
             </div>
         </NavLink>
     )
-}
+};
 
 export default Product

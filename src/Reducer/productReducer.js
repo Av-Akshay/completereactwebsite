@@ -20,7 +20,8 @@ const productReducer = (state, action) => {
                 isLoading: false,
                 products: action.payload,
                 featureProducts: featureData,
-            }; case "SINGLE_LOADING":
+            };
+        case "SINGLE_LOADING":
             return {
                 ...state,
                 sLoading: true,
