@@ -5,7 +5,7 @@ import { useFilterContex } from '../context/Filtercontex';
 
 
 const Sort = () => {
-    const { grid_view, setGridView, setListview } = useFilterContex();
+    const { grid_view, setGridView, setListview, Sorting } = useFilterContex();
 
     return (
         <Wrapper>
@@ -18,7 +18,22 @@ const Sort = () => {
                 </button>
             </div>
             <div className="products-data"> available</div>
-            <div className="sort-selection">dropdown</div>
+            <div className="sort-selection">
+                <form action="#">
+                    <label htmlFor="sort"></label>
+                    <select
+                        name="sort"
+                        id="sort"
+                        className='sort-selection--style'
+                        onClick={Sorting}
+                    >
+                        <option value="lowest"> Price(lowest)</option>
+                        <option value="highest"> Price(highest)</option>
+                        <option value="a-z"> Price(a-z)</option>
+                        <option value="z-a"> Price(z-a)</option>
+                    </select>
+                </form>
+            </div>
         </Wrapper>
     )
 };
@@ -49,6 +64,14 @@ const Wrapper = styled.section`
             color: #fff;
         }
     }
+    .sort-selection--style{
+        padding: 0.5rem;
+        outline: none;
+        border: 0.1rem solid rgb(98 84 243);
+        border-radius: 0.5rem;
+        font-size: 1.6rem;
+    }
+
 `;
 
 

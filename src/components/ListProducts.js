@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom';
 import { Button } from "./Button"
 
 const ListProducts = (curElm) => {
-    console.log(curElm)
 
     return (
         <Wrapper>
