@@ -7,7 +7,6 @@ const Listview = ({ products }) => {
         <Wrapper className='section'>
             <div className="container grid">
                 {products.map((curElm) => {
-                    console.log(curElm)
                     return <ListProducts key={curElm.id} {...curElm} />
 
                 })}
