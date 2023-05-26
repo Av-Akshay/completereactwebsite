@@ -6,7 +6,7 @@ import Listview from './Listview';
 
 
 const ProductList = () => {
-    const { All_products, filter_products, grid_view } = useFilterContex();
+    const { filter_products, grid_view } = useFilterContex();
     if (grid_view === true) {
         return (
             <Gridview products={filter_products} />

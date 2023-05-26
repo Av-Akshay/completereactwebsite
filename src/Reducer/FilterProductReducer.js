@@ -66,14 +66,23 @@ const FilterProductReducer = (state, action) => {
         case "UPDATE_INPUTE_VALUE":
             let { All_products } = state;
             let newUpdateValue = [...All_products];
-            const { text } = state.filters;
+            const { text, category, company } = state.filters;
+
             if (text) {
-                newUpdateValue = newUpdateValue.filter((curElem) => {
+                newUpdateValue = newUpdateValue?.filter((curElem) => {
                     return curElem.name.toLowerCase().includes(text);
                 })
-                console.log(newUpdateValue);
             }
-            console.log(newUpdateValue);
+            if (category !== "all") {
+                newUpdateValue = newUpdateValue?.filter((curElem) => {
+                    return curElem.category === category;
+                })
+            }
+            if (company !== "all") {
+                newUpdateValue = newUpdateValue?.filter((curElem) => {
+                    return curElem.company === company;
+                })
+            }
 
             return {
                 ...state,

@@ -10,6 +10,8 @@ const initialState = {
     sorting_value: "lowest",
     filters: {
         text: "",
+        category: "all",
+        company: "all",
     }
 }
 
@@ -39,7 +41,6 @@ export const FilterProvider = ({ children }) => {
     const updateFilterValue = (event) => {
         let { name, value } = event.target;
 
-        console.log(value);
         return dispatch({ type: "UPDATE_FILTER_VALUE", payload: { name, value } })
 
     }
@@ -48,7 +49,6 @@ export const FilterProvider = ({ children }) => {
 
     useEffect(() => {
         dispatch({ type: "UPDATE_INPUTE_VALUE" });
-        console.log("triger")
         dispatch({ type: "SORTING_PRODUCTS" })
     }, [products, state.sorting_value, state.filters])
 
