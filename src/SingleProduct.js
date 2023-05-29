@@ -16,11 +16,7 @@ const SingleProduct = () => {
   const { id } = useParams();
   const API = 'https://api.pujakaitem.com/api/products';
   const { getSingleProduct, singleProduct, sLoading } = UseProductContext();
-  console.log(getSingleProduct)
-
   const { id: Akshay, name, company, price, description, stock, stars, reviews, image } = singleProduct;
-  console.log(image);
-
   useEffect(() => {
     getSingleProduct(`${API}?id=${id}`);
   }, []);

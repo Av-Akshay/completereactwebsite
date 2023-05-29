@@ -1,21 +1,32 @@
 import React from 'react'
 import styled from 'styled-components';
 import { useFilterContex } from '../context/Filtercontex';
+import { AiOutlineCheck } from "react-icons/ai";
+import FormatePrice from '../helpers/FormatePrice';
+
+
 // import Categories from './Categories';
 
 const FilterSection = () => {
-    const { filters: { text, category, company }, updateFilterValue, All_products } = useFilterContex();
+    const { filters: { text, colors, Price, maxPrice, minPrice, category }, updateFilterValue, All_products } = useFilterContex();
+
+
 
     const getUniqueValues = (data, property) => {
         let newVal = data.map((curElm) => {
             return curElm[property];
         })
-        return newVal = ["all", ...new Set(newVal)]
-
-
+        if (property === "colors") {
+            return (newVal = ["All", ...new Set([].concat(...newVal))]);
+        } else {
+            return (newVal = ["All", ...new Set(newVal)])
+        }
     }
+
     const categoryOnlyData = getUniqueValues(All_products, "category");
     const companyOnlyData = getUniqueValues(All_products, "company");
+    const colorOnlyData = getUniqueValues(All_products, "colors");
+    console.log(colorOnlyData);
 
     return (
         <Wrapper>
@@ -37,6 +48,7 @@ const FilterSection = () => {
                                     type='button'
                                     name="category"
                                     value={curElem}
+                                    className={category === curElem ? "active" : null}
                                     onClick={updateFilterValue}>
                                     {curElem}
                                 </button>
@@ -53,6 +65,7 @@ const FilterSection = () => {
                                     return <option
                                         key={index}
                                         name="company"
+                                        style={{ textTransform: 'capitalize' }}
                                         value={curElem}>
                                         {curElem}
                                     </option>
@@ -61,7 +74,50 @@ const FilterSection = () => {
                         </select>
                     </form>
                 </div>
+                <div className="filter-colors">
+                    <h3>Colors</h3>
+                    <div className="filter-color--style">
+                        {colorOnlyData.map((curColor, index) => {
+                            if (curColor === "All") {
+                                return (
+                                    <button
+                                        key={index}
+                                        value={curColor}
+                                        name='colors'
+                                        type='button'
+                                        style={{ border: "none", margin: "0 0.8rem", textTransform: 'capitalize', backgroundColor: "transparent" }}
+                                        onClick={updateFilterValue}
+                                    >All
+                                    </button>
+                                )
+                            }
+                            return (
+                                <button
+                                    key={index}
+                                    value={curColor}
+                                    name='colors'
+                                    type='button'
+                                    style={{ backgroundColor: curColor }}
+                                    className={colors === curColor ? "active btnStyle" : "btnStyle"}
+                                    onClick={updateFilterValue}
+                                >{colors === curColor ? <AiOutlineCheck className='check' /> : null}
+                                </button>
 
+                            )
+                        })}
+                    </div>
+                </div>
+                <div className="filter-price">
+                    <h3>Price</h3>
+                    <p> <FormatePrice price={Price} /> </p>
+                    <input type="range"
+                        min={minPrice}
+                        max={maxPrice}
+                        value={Price}
+                        onChange={updateFilterValue}
+                        name='Price'
+                    />
+                </div>
             </div>
         </Wrapper>
     )
@@ -80,7 +136,11 @@ margin-top: 5rem;
         display: flex;
         flex-direction: column;
         gap:1rem;
-        button{
+        .active{
+            color:${({ theme }) => theme.colors.helper};
+        }
+    }
+     button{
             outline: none;
             border: none;
             background-color: #fff;
@@ -92,22 +152,9 @@ margin-top: 5rem;
         &:hover{
             color: ${({ theme }) => theme.colors.helper};
         }
-        &::after{
-            content: " ";
-            position: absolute;
-            width:0;
-            height:0.2rem;
-            left:-5%;
-            top: 90%;
-            background-color:  ${({ theme }) => theme.colors.helper};
-            transition: all 0.3s linear;
-        }
-        &:hover::after{
-            width:100%;
-        }
-        }
     }
-}
+}    
+
 .filter-company{
     margin-top: 5rem;
     display: flex;
@@ -121,6 +168,59 @@ margin-top: 5rem;
         border-color:${({ theme }) => theme.colors.helper};
         padding:0.5rem; 
         
+    }
+}
+.filter-colors{
+    margin-top: 5rem;
+    h3{
+        font-weight:600;
+    }
+}
+.filter-color--style{
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    margin-top: 1rem;
+}
+.btnStyle{
+    margin-right: 0.5rem;
+    border-radius: 50%;
+    border: none;
+    width: 2rem;
+    outline: none;
+    height: 2rem;
+    opacity: 0.6;
+    position: relative;
+    cursor: pointer;
+    &:hover{
+        opacity: 1;
+    } 
+
+}
+.active{
+    opacity: 1;
+    .check{
+        color: white;
+        font-weight: 900;
+        position: relative;
+    }
+}
+.btnStyle: first-child{
+    background-color: #000;
+}
+.filter-price{
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    h3{
+        font-weight: 600;
+    }
+    input{
+        border: none;
+        outline: none;
+        background-color: tranparent;
+
     }
 }
 `
