@@ -4,11 +4,25 @@ import { AiOutlineCheck } from "react-icons/ai";
 import CartAmount from './CartAmount';
 import { NavLink } from 'react-router-dom';
 import { Button } from './Button';
+import { useCartContext } from '../context/Cart_Context';
 
 const AddToCart = ({ product }) => {
+    const { addToCart } = useCartContext();
 
-    const { colors } = product;
+    const { id, colors, stock } = product;
+    console.log(product);
     const [color, setcolor] = useState(colors[0]);
+    const [Amount, setAmount] = useState(1);
+    const Increment = () => {
+        Amount < stock ? setAmount(Amount + 1) : setAmount(stock)
+
+        if (Amount === stock) {
+            alert(`only ${stock} item present in stock`)
+        }
+    }
+    const Decrement = () => {
+        Amount > 1 ? setAmount(Amount - 1) : setAmount(1)
+    }
 
     return (
         <Wrapper>
@@ -26,9 +40,13 @@ const AddToCart = ({ product }) => {
             </div>
 
             {/* add to cart */}
-            <CartAmount product={product} />
+            <CartAmount
+                Amount={Amount}
+                Decrement={Decrement}
+                Increment={Increment}
+            />
 
-            <NavLink to="/cart">
+            <NavLink to="/cart" onClick={() => addToCart(id, Amount, color, product)} >
                 <Button className='btn'> Add To Cart</Button>
             </NavLink>
 

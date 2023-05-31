@@ -14,7 +14,7 @@ const Gridview = ({ products }) => {
     )
 };
 const Wrapper = styled.section`
-padding: 8rem 0;
+
 
 .grid{
     gap: 3.2rem;

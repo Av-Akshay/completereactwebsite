@@ -110,6 +110,20 @@ const FilterProductReducer = (state, action) => {
                 ...state,
                 filter_products: newUpdateValue,
             }
+        case "CLEAR_ALL_FILTER":
+            return {
+                ...state,
+                filters: {
+                    ...state.filters,
+                    text: "",
+                    category: "All",
+                    company: "All",
+                    colors: "All",
+                    maxPrice: 0,
+                    price: 0,
+                    minPrice: 0,
+                }
+            }
 
         default:
             return state;

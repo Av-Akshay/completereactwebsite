@@ -5,8 +5,10 @@ import { useFilterContex } from '../context/Filtercontex';
 
 
 const Sort = () => {
-    const { grid_view, setGridView, setListview, Sorting } = useFilterContex();
+    const { filter_products, grid_view, setGridView, setListview, Sorting } = useFilterContex();
 
+    const totalProduct = filter_products.length;
+    console.log(totalProduct);
     return (
         <Wrapper>
             <div className="sorting-list--grid">
@@ -17,7 +19,7 @@ const Sort = () => {
                     <BsList className='icon' />
                 </button>
             </div>
-            <div className="products-data"> available</div>
+            <div className="products-data" style={{ fontSize: "1.8rem" }}> {`${totalProduct} Products Available`}</div>
             <div className="sort-selection">
                 <form action="#">
                     <label htmlFor="sort"></label>

@@ -1,7 +1,43 @@
 import styled from "styled-components";
+import { useCartContext } from "./context/Cart_Context";
+import CartItem from "./components/CartItem";
+import { Button } from "./components/Button";
+import { NavLink } from "react-router-dom";
 
 const Cart = () => {
-  return <Wrapper></Wrapper>;
+
+  const { cart } = useCartContext();
+  console.log(cart);
+
+  return <Wrapper>
+    <div className="container">
+      <div className="cart_heading grid grid-five-column">
+        <p>Item</p>
+        <p className="cart_hide">Price</p>
+        <p>Quantity</p>
+        <p className="cart-hide">Subtotal</p>
+        <p>Remove</p>
+      </div>
+      <hr />
+
+      <div className="cart-item">
+        {
+          cart.map((curElem) => {
+            return <CartItem
+              key={curElem.id}
+              {...curElem}
+            />
+          })
+        }
+      </div>
+      <hr />
+      <div>
+        <NavLink to="/products"><Button>Continue To Shopping</Button></NavLink>
+
+      </div>
+
+    </div>
+  </Wrapper>;
 };
 
 const Wrapper = styled.section`
@@ -12,7 +48,7 @@ const Wrapper = styled.section`
   }
 
   .grid-five-column {
-    grid-template-columns: repeat(4, 1fr) 0.3fr;
+    grid-template-columns: repeat(5, 1fr);
     text-align: center;
     align-items: center;
   }

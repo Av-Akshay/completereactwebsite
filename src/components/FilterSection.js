@@ -3,12 +3,13 @@ import styled from 'styled-components';
 import { useFilterContex } from '../context/Filtercontex';
 import { AiOutlineCheck } from "react-icons/ai";
 import FormatePrice from '../helpers/FormatePrice';
+import { Button } from './Button';
 
 
 // import Categories from './Categories';
 
 const FilterSection = () => {
-    const { filters: { text, colors, Price, maxPrice, minPrice, category }, updateFilterValue, All_products } = useFilterContex();
+    const { filters: { text, colors, Price, maxPrice, minPrice, category }, updateFilterValue, All_products, clearAllFilter } = useFilterContex();
 
 
 
@@ -59,7 +60,7 @@ const FilterSection = () => {
                 <div className="filter-company">
                     <h3> company</h3>
                     <form action="#">
-                        <select name="company" id="company" className='filter-company--select' onClick={updateFilterValue}>
+                        <select name="company" id="company" style={{ textTransform: 'capitalize' }} className='filter-company--select' onClick={updateFilterValue}>
                             {
                                 companyOnlyData.map((curElem, index) => {
                                     return <option
@@ -117,6 +118,9 @@ const FilterSection = () => {
                         onChange={updateFilterValue}
                         name='Price'
                     />
+                </div>
+                <div className="filter-clear">
+                    <Button className='btn' onClick={clearAllFilter}> Clear Filters</Button>
                 </div>
             </div>
         </Wrapper>
@@ -219,9 +223,13 @@ margin-top: 5rem;
     input{
         border: none;
         outline: none;
-        background-color: tranparent;
-
+        background-color: transparent;
+        padding: 0;
     }
+}
+.btn{
+    background-color: red;
+    margin-top: 1.8rem;
 }
 `
 

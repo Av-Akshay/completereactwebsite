@@ -1,37 +1,22 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { BsPlusLg } from "react-icons/bs";
 import { HiMinus } from "react-icons/hi";
 import styled from 'styled-components';
 
-const CartAmount = ({ product }) => {
-    const { stock } = product;
-
-    const [Amount, setAmount] = useState(1);
-
-    const Increment = () => {
-        Amount < stock ? setAmount(Amount + 1) : setAmount(stock)
-
-        if (Amount === stock) {
-            alert(`only ${stock} item present in stock`)
-        }
-    }
-    const Decrement = () => {
-        Amount > 1 ? setAmount(Amount - 1) : setAmount(1)
-    }
-
+const CartAmount = (props) => {
 
     return (
         <Wrapper>
             <div className="cart-button">
                 <div className="amount-toggle">
-                    <button onClick={Decrement}>
+                    <button onClick={props.Decrement}>
                         <HiMinus className='btn' />
                     </button>
                     <div className="amount-style">
-                        {Amount}
+                        {props.Amount}
                     </div>
 
-                    <button onClick={Increment}>
+                    <button onClick={props.Increment}>
                         <BsPlusLg className='btn' />
                     </button>
                 </div>

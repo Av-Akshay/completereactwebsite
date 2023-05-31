@@ -49,6 +49,11 @@ export const FilterProvider = ({ children }) => {
 
     }
 
+    // to clear all the filters.........
+    const clearAllFilter = () => {
+        return dispatch({ type: "CLEAR_ALL_FILTER", payload: products })
+    }
+
     // to sort the product....
 
     useEffect(() => {
@@ -64,7 +69,7 @@ export const FilterProvider = ({ children }) => {
 
 
     return (
-        <FilterContex.Provider value={{ ...state, setGridView, setListview, Sorting, updateFilterValue }}>
+        <FilterContex.Provider value={{ ...state, setGridView, setListview, Sorting, updateFilterValue, clearAllFilter }}>
             {children}
         </FilterContex.Provider>
     );

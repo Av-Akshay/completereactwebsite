@@ -9,7 +9,7 @@ const Product = (curElem) => {
         <NavLink to={`/Singleproduct/${id}`}>
             <div className="card">
                 <figure>
-                    <img src={image} alt={name} style={{ width: "100%" }} />
+                    <img src={image} alt={name} style={{ width: "100%", maxHeight: "126px" }} />
                     <figcaption className='caption'>{category}</figcaption>
                 </figure>
                 <div className="card-data">
