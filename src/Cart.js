@@ -5,40 +5,53 @@ import { Button } from "./components/Button";
 import { NavLink } from "react-router-dom";
 
 const Cart = () => {
+  const { cart, clearCart } = useCartContext();
 
-  const { cart } = useCartContext();
-  console.log(cart);
+  if (cart.length === 0) {
+    return (
+      <EmptyDiv>
+        <h1 className="empty_cart">No Item In Cart</h1>
+      </EmptyDiv>
+    );
+  } else {
+    return (
+      <Wrapper>
+        <div className="container">
+          <div className="cart_heading grid grid-five-column">
+            <p>Item</p>
+            <p className="cart_hide">Price</p>
+            <p>Quantity</p>
+            <p className="cart-hide">Subtotal</p>
+            <p>Remove</p>
+          </div>
+          <hr />
 
-  return <Wrapper>
-    <div className="container">
-      <div className="cart_heading grid grid-five-column">
-        <p>Item</p>
-        <p className="cart_hide">Price</p>
-        <p>Quantity</p>
-        <p className="cart-hide">Subtotal</p>
-        <p>Remove</p>
-      </div>
-      <hr />
-
-      <div className="cart-item">
-        {
-          cart.map((curElem) => {
-            return <CartItem
-              key={curElem.id}
-              {...curElem}
-            />
-          })
-        }
-      </div>
-      <hr />
-      <div>
-        <NavLink to="/products"><Button>Continue To Shopping</Button></NavLink>
-
-      </div>
-
-    </div>
-  </Wrapper>;
+          <div className="cart-item">
+            {cart?.map((curElem) => {
+              return <CartItem key={curElem.id} {...curElem} />;
+            })}
+          </div>
+          <hr />
+          <div className="cart-two-button">
+            <NavLink to="/products">
+              <Button>Continue To Shopping</Button>
+            </NavLink>
+            <Button className="btn btn-clear" onClick={clearCart}>
+              clear Cart
+            </Button>
+          </div>
+        </div>
+      </Wrapper>
+    );
+  }
 };
+const EmptyDiv = styled.div`
+  display: flex;
+  height: 50vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+`;
 
 const Wrapper = styled.section`
   padding: 9rem 0;
