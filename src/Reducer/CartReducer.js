@@ -96,6 +96,16 @@ const CartReducer = (state, action) => {
       }),
     };
   }
+  if (action.type === "CART_TOTAL_ITEM") {
+    return {
+      ...state,
+      total_item: state.cart.reduce((initialVal, curElem) => {
+        let { Amount } = curElem;
+        initialVal = initialVal + Amount;
+        return initialVal;
+      }, 0),
+    };
+  }
 
   return state;
 };
