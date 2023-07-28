@@ -7,17 +7,26 @@ import { useCartContext } from "../context/Cart_Context";
 
 const CartAmount = (props) => {
   const { increment, decrement } = useCartContext();
-
   return (
     <Wrapper>
       <div className="cart-button">
         <div className="amount-toggle">
-          <button onClick={() => decrement(props.id)}>
+          <button
+            onClick={() => {
+              props.Decrement();
+              decrement(props.id);
+            }}
+          >
             <HiMinus className="btn" />
           </button>
           <div className="amount-style">{props.Amount}</div>
 
-          <button onClick={() => increment(props.id)}>
+          <button
+            onClick={() => {
+              increment(props.id);
+              props.Increment();
+            }}
+          >
             <BsPlusLg className="btn" />
           </button>
         </div>

@@ -41,7 +41,6 @@ const CartItem = ({ id, name, image, color, price, Amount }) => {
       {/* subtotal */}
       <div className="cart-hide">
         <p>
-          {" "}
           <FormatePrice price={price * Amount} />
         </p>
       </div>

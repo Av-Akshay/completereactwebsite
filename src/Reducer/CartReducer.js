@@ -96,12 +96,18 @@ const CartReducer = (state, action) => {
       }),
     };
   }
-  if (action.type === "CART_TOTAL_ITEM") {
+
+  if (action.type === "CART_TOTAL_AMOUNT") {
     return {
       ...state,
       total_item: state.cart.reduce((initialVal, curElem) => {
         let { Amount } = curElem;
         initialVal = initialVal + Amount;
+        return initialVal;
+      }, 0),
+      total_Amount: state.cart.reduce((initialVal, curElm) => {
+        let combineVal = curElm.Amount * curElm.price;
+        initialVal = initialVal + combineVal;
         return initialVal;
       }, 0),
     };

@@ -12,7 +12,7 @@ const CartProvider = ({ children }) => {
     cart: getStoreData(),
     total_item: "",
     total_Amount: "",
-    shipping_fee: 50000,
+    shipping_fee: 5000,
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -45,7 +45,7 @@ const CartProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    dispatch({ type: "CART_TOTAL_ITEM" });
+    dispatch({ type: "CART_TOTAL_AMOUNT" });
     localStorage.setItem("myCart", JSON.stringify(state.cart));
   }, [state.cart]);
 

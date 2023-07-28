@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { UseProductContext } from "./context/productcontex";
 import PageNavigation from "./components/PageNavigation";
@@ -11,85 +11,92 @@ import { MdOutlineSecurity } from "react-icons/md";
 import Star from "./components/Star";
 import AddToCart from "./components/AddToCart";
 
-
 const SingleProduct = () => {
   const { id } = useParams();
-  const API = 'https://api.pujakaitem.com/api/products';
+  const API = "https://api.pujakaitem.com/api/products";
   const { getSingleProduct, singleProduct, sLoading } = UseProductContext();
-  const { id: Akshay, name, company, price, description, stock, stars, reviews, image } = singleProduct;
+  const {
+    id: Akshay,
+    name,
+    company,
+    price,
+    description,
+    stock,
+    stars,
+    reviews,
+    image,
+  } = singleProduct;
   useEffect(() => {
     getSingleProduct(`${API}?id=${id}`);
   }, []);
 
   if (sLoading) {
-    return <div className="page_loading">Loading....</div>
+    return <div className="page_loading">Loading....</div>;
   }
 
-
-  return <Wrapper>
-    <PageNavigation title={name} />
-    <Container className="container">
-      <div className="grid grid-two-column">
-        <div className="product_images ">
-          <MyImage
-            imgs={image}
-          />
-        </div>
-        <div className="product-data">
-          <h2>{name}</h2>
-          <Star stars={stars}
-            review={reviews}
-          />
-          <p className="product-data-price">
-            MRP:
-            <del>
-              <FormatePrice price={price + 250000} />
-            </del>
-          </p>
-          <p className="product-data-price product-data-real-price"> Deal of the day:  <FormatePrice price={price} /></p>
-          <p>{description}</p>
-          <div className="product-data-warranty">
-            <div className="product-warranty-data">
-              <TbTruckDelivery className="warranty-icon" />
-              <p>Free Delivery</p>
-            </div>
-
-            <div className="product-warranty-data">
-              <TbReplace className="warranty-icon" />
-              <p>30 Days Replacement</p>
-            </div>
-
-            <div className="product-warranty-data">
-              <TbTruckDelivery className="warranty-icon" />
-              <p>Chauhans Delivery</p>
-            </div>
-
-            <div className="product-warranty-data">
-              <MdOutlineSecurity className="warranty-icon" />
-              <p>2 Year Warranty</p>
-            </div>
+  return (
+    <Wrapper>
+      <PageNavigation title={name} />
+      <Container className="container">
+        <div className="grid grid-two-column">
+          <div className="product_images ">
+            <MyImage imgs={image} />
           </div>
-          <div className="product-data-info">
-            <p>Available:
-              <span> {stock > 0 ? "In Stock" : "Not Avialable"} </span>
+          <div className="product-data">
+            <h2>{name}</h2>
+            <Star stars={stars} review={reviews} />
+            <p className="product-data-price">
+              MRP:
+              <del>
+                <FormatePrice price={price + 250000} />
+              </del>
             </p>
-            <p>
-              ID: <span>{id}</span>
+            <p className="product-data-price product-data-real-price">
+              {" "}
+              Deal of the day: <FormatePrice price={price} />
             </p>
-            <p>
-              Brand: <span>{company}</span>
-            </p>
+            <p>{description}</p>
+            <div className="product-data-warranty">
+              <div className="product-warranty-data">
+                <TbTruckDelivery className="warranty-icon" />
+                <p>Free Delivery</p>
+              </div>
+
+              <div className="product-warranty-data">
+                <TbReplace className="warranty-icon" />
+                <p>30 Days Replacement</p>
+              </div>
+
+              <div className="product-warranty-data">
+                <TbTruckDelivery className="warranty-icon" />
+                <p>Chauhans Delivery</p>
+              </div>
+
+              <div className="product-warranty-data">
+                <MdOutlineSecurity className="warranty-icon" />
+                <p>2 Year Warranty</p>
+              </div>
+            </div>
+            <div className="product-data-info">
+              <p>
+                Available:
+                <span> {stock > 0 ? "In Stock" : "Not Avialable"} </span>
+              </p>
+              <p>
+                ID: <span>{id}</span>
+              </p>
+              <p>
+                Brand: <span>{company}</span>
+              </p>
+            </div>
+            <hr />
+            {stock > 0 && <AddToCart product={singleProduct} />}
           </div>
-          <hr />
-          {stock > 0 && <AddToCart product={singleProduct} />}
         </div>
-      </div>
-
-    </Container>
-  </Wrapper>;
-}
-
-
+      </Container>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.section`
   .container {
