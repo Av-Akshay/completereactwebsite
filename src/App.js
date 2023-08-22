@@ -11,7 +11,7 @@ import Products from "./pages/ProductPage";
 import Contact from "./pages/ContactPage";
 import SingleProduct from "./pages/SingleProductPage";
 import Cart from "./pages/Cart";
-import Error from "./pages/ErrorPage";
+import ErrorPage from "./pages/ErrorPage";
 import HomePage from "./pages/HomePage";
 import { cartTotalAmount } from "./reduxToolKit/slices";
 import { updateInputValue, sortingProducts } from "./reduxToolKit/slices";
@@ -59,13 +59,13 @@ function App() {
         <GlobalStyle />
         <Header />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route exact path="/" element={<HomePage />} />
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/Singleproduct/:id" element={<SingleProduct />} />
-          <Route path="*" element={<Error />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
         <Footer />
       </Router>

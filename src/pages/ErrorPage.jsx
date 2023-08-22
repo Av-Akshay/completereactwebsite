@@ -3,7 +3,7 @@ import { Button } from "../style/Button";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-const Error = () => {
+const ErrorPage = () => {
   return (
     <Wrapper>
       <div className="container">
@@ -36,4 +36,4 @@ const Wrapper = styled.section`
   }
 `;
 
-export default Error;
+export default ErrorPage;
