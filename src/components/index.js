@@ -1,10 +1,6 @@
 // global componets
-import Footer from "./Footer";
+
 import HeroSection from "./HeroSection";
-import Gridview from "./GridView";
-import ListProducts from "./ListProduct";
-import ListView from "./ListView";
-import Product from "./Product";
 
 // helper components
 import FormatePrice from "../helpers/FormatePrice";
@@ -35,7 +31,6 @@ import PageNavigation from "./single-product-components/PageNavigation";
 import Star from "./single-product-components/Star";
 
 export {
-  Footer,
   Header,
   HeroSection,
   Nav,
@@ -52,9 +47,5 @@ export {
   MyImage,
   PageNavigation,
   Star,
-  Gridview,
-  ListView,
-  ListProducts,
-  Product,
   FormatePrice,
 };

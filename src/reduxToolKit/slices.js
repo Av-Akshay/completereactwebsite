@@ -64,7 +64,7 @@ const productSlice = createSlice({
         products: action.payload,
         filter_products: [...action.payload],
         All_products: [...action.payload],
-        filters: { ...state.filters, maxPrice: maxPrice, Price: maxPrice },
+        filters: { ...state.filters, maxPrice: maxPrice, price: maxPrice },
       };
     });
     builder.addCase(getSingleProduct.pending, (state, action) => {
@@ -98,8 +98,8 @@ const productSlice = createSlice({
           category: "All",
           company: "All",
           colors: "All",
-          maxPrice: 0,
-          price: 0,
+          maxPrice: state.filters.maxPrice,
+          price: state.filters.maxPrice,
           minPrice: 0,
         },
       };
